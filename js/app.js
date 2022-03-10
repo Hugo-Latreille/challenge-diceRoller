@@ -3,14 +3,21 @@ function randomNumber(min, max) {
 	return Math.round(Math.random() * (max - min) + min);
 }
 
-function rollDice() {
+function rollDice(playerId) {
 	var dice = randomNumber(1, 6);
 	console.log(dice);
 
 	var divDice = document.createElement("div");
 	divDice.classList.add("dice");
 	var player = document.getElementById("player");
-	player.appendChild(divDice);
+	var otherPlayer = document.getElementById("dealer");
+
+	if (playerId === "player") {
+		player.appendChild(divDice);
+	} else {
+		otherPlayer.appendChild(divDice);
+	}
+
 	divDice.style.backgroundPositionX = `${dice * 100}px`;
 }
 
@@ -26,8 +33,18 @@ function severalRolls() {
 	console.log(combienChiffre);
 
 	for (var i = 0; i < combienChiffre; i++) {
-		rollDice();
+		rollDice("dealer");
+		rollDice("player");
 	}
 }
 
+function adversary() {
+	var otherPlayer = document.createElement("div");
+	otherPlayer.classList.add("board");
+	otherPlayer.setAttribute("id", "dealer");
+	var app = document.getElementById("app");
+	app.appendChild(otherPlayer);
+}
+
+adversary();
 severalRolls();
