@@ -18,6 +18,8 @@ function rollDice(playerId) {
 		otherPlayer.appendChild(divDice);
 	}
 
+	//
+
 	divDice.style.backgroundPositionX = `${dice * -100}px`;
 	// divDice.style.backgroundPositionX = dice * -100 + "px";
 }
@@ -79,3 +81,12 @@ var rangeInputElement = document.querySelector(".howMany");
 // https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/change_event
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
 rangeInputElement.addEventListener("input", updateRangeInputValue);
+
+document.addEventListener("keyup", handleKey);
+
+function handleKey(e) {
+	console.log(e);
+	if (e.code === "Space") {
+		severalRolls();
+	}
+}
